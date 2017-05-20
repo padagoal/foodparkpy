@@ -38,7 +38,7 @@ class Foodpark(models.Model):
     facebook = models.CharField(max_length=200)
     instagram = models.CharField(max_length=200)
     es_favorito = models.BooleanField(default=False)
-
+    descripcion_corta = models.CharField(max_length=240,default='Descripcion Corta')
 
     def __str__(self):
         return self.nombre_foodpark
@@ -56,9 +56,11 @@ class Local(models.Model):
     foto_local = models.FileField()
     facebook = models.CharField(max_length=200)
     instagram = models.CharField(max_length=200)
+    es_recomendado = models.BooleanField(default=False)
 
     def __str__(self):
         return self.nombre_local
+
     def __unicode__(self):
         return self.nombre_local
 

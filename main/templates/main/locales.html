@@ -1,0 +1,82 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block body %}
+		<div class="content">
+		
+			
+				<div class="menu-section1">
+					<div class="container">
+						<h3> LOCALES RECOMENDADOS  </h3>
+						<div class="menu-grids wow bounceIn animated" data-wow-delay="0.4s" style="visibility: visible; -webkit-animation-delay: 0.4s;">
+							<div class="top-menu">
+                                {% if locales %}
+                                    {%  for local in locales %}
+                                        {% if local.es_recomendado %}
+                                            <div class="col-md-3 menu-grid">
+                                                <img src="{{ local.foto_local.url }}" class="img-responsive" alt="" />
+                                                <div class="menu-info">
+                                                    <h5>{{ local.nombre_local }}</h5>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+								<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+                    <div class="container" id="fillocal">
+                            <h3> BUSCAR POR LOCAL</h3>
+                            <form action="#fillocal" method="get"> <button type="submit" style=" border: 0;background-color:#ffffff;box-shadow:none;border-radius: 0px;padding-top: 4px;padding-bottom: 8px;"><i style="color: #2056ae;" class="glyphicon glyphicon-search"></i></button> {{ filter.form.nombre_local }}</form>
+                            {% if filter %}
+                                <h3> Resultados:</h3>
+                                <div class="row">
+                                    {% if filter.qs %}
+                                        {% for obj in filter.qs %}
+                                            <div class="col-md-3 menu-grid">
+                                                <img src="{{ obj.foto_local.url }}" class="img-responsive" alt="" />
+                                                <div class="menu-info">
+                                                    <h5>{{ obj.nombre_local }}</h5>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                    </div>
+					
+			</div>
+			<div class="footer-section">
+				<div class="container">
+					<div class="footer-top">
+								<div class="social-icons">
+										<a href="#"><i class="icon4"></i></a>
+										<a href="#"><i class="icon5"></i></a>
+										<a href="#"><i class="icon6"></i></a>
+									</div>
+								</div>
+							<div class="footer-bottom">
+						<p> &copy;2017  Todos los derechos reservados | Diseñado por<a href="http://creatu.co" target="target_blank">CreaTu</a></p>
+						</div>
+						<script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear' 
+					 		};
+							*/
+							
+							$().UItoTop({ easingType: 'easeOutQuart' });
+							
+						});
+					</script>
+				<a class="scroll" href="#head" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+
+					</div>
+				</div>
+{% endblock %}

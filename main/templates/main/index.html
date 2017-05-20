@@ -30,7 +30,7 @@
           });
 
         
-       // var infoWindow = new google.maps.InfoWindow({map: map});
+        //var infoWindow = new google.maps.InfoWindow({map: map});
         
         
         // Try HTML5 geolocation.
@@ -43,13 +43,13 @@
             
           map.setCenter(pos);    
             //infoWindow.setPosition(pos);
-            //infoWindow.setContent('Location found.');
+            //infoWindow.setContent('Usted esta aqui!');
             
 
          
               marker = new google.maps.Marker({
 
-                      icon:'{% static 'main/images/markerVerde.png' %}',
+                      icon:'{% static 'main/images/markerVerdeEstas.png' %}',
                         map: map,
             draggable: false,
             animation: google.maps.Animation.DROP,
@@ -58,8 +58,8 @@
     
           google.maps.event.addListener(marker,'click', (function(marker,contentString,infowindow){ 
             return function() {
-                infowindow.setContent(contentString);
-                infowindow.open(map,marker);
+                //infowindow.setContent(contentString);
+               // infowindow.open(map,marker);
                 //windows.push(infowindow)
                 google.maps.event.addListener(infowindow,'click', function(){ 
                     infowindow.close();
@@ -90,9 +90,19 @@
         var contentString = '<div id="content">'+
         '<div id="siteNotice">'+
         '</div>'+
-        '<img src="{{ foodpark.logo.url }}" alt="Smiley face" width="100" height="100">'+
-        '<p>{{ foodpark.descripcion_foodpark }}<ul>'+
-        '</ul></p>'+
+		'<table >'+
+		'<tbody>'+
+		'<tr>'+
+		'<td>'+
+        '<img src="{{ foodpark.logo.url }}" alt="{{foodpark.nombre_foodpark}}" width="100" height="100">'+
+        '</td>'+
+        '<td style="padding-left: 30px;">'+
+        '<h4>{{ foodpark.nombre_foodpark }}</h4>'+
+        '<p>{{ foodpark.descripcion_corta }}</p>'+
+        '</td>'+
+        '</tr>'+
+        '</tbody>'+
+        '</table>'+
         '</div>';
         
         var infowindow = new google.maps.InfoWindow({
